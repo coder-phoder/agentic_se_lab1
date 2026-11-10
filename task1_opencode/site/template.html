@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en" data-theme="day">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8e7">
+  <title>Team Merge Conflict | Agentic SE Lab</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #fff8e7;
+      --ink: #1d1d1f;
+      --muted: #655f57;
+      --surface: #fffdf6;
+      --surface-strong: #f3ead7;
+      --line: #d8cdb8;
+      --accent: #e4007c;
+      --accent-ink: #a50059;
+      --lime: #d5ef77;
+      --lavender: #e6ddff;
+      --shadow: 7px 7px 0 var(--ink);
+    }
+    html[data-theme="night"] {
+      color-scheme: dark;
+      --page: #14142b;
+      --ink: #f4f1de;
+      --muted: #b8b6c9;
+      --surface: #20203c;
+      --surface-strong: #2b2b49;
+      --line: #4a4967;
+      --accent: #ff72ba;
+      --accent-ink: #ffb2d6;
+      --lime: #39463c;
+      --lavender: #393553;
+      --shadow: 7px 7px 0 #070714;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-block: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 850; letter-spacing: -.04em; }
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      aspect-ratio: 1;
+      place-items: center;
+      background: var(--accent);
+      color: white;
+      border: 2px solid var(--ink);
+      border-radius: 50% 50% 50% 12%;
+      transform: rotate(-8deg);
+      font-size: 1rem;
+    }
+    .nav { display: flex; align-items: center; gap: clamp(12px, 3vw, 30px); }
+    .nav a { font-size: .88rem; font-weight: 750; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+    #theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink);
+      font: inherit;
+      font-size: .85rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    #theme-toggle:hover { background: var(--lime); }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.5fr .8fr;
+      align-items: center;
+      gap: 40px;
+      padding-block: clamp(56px, 9vw, 112px) 82px;
+    }
+    .eyebrow, .section-kicker {
+      margin: 0 0 13px;
+      color: var(--accent-ink);
+      font-size: .76rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 750px;
+      margin-bottom: 20px;
+      font-size: clamp(3.1rem, 8vw, 6.5rem);
+      line-height: .94;
+      letter-spacing: -.075em;
+    }
+    h1 .highlight { color: var(--accent); }
+    .hero-copy { max-width: 590px; color: var(--muted); font-size: clamp(1.02rem, 1.5vw, 1.2rem); }
+    .hero-copy strong { color: var(--ink); }
+    .hero-sticker {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 245px;
+      padding: 25px;
+      border: 2px solid var(--ink);
+      border-radius: 46% 54% 49% 51% / 58% 42% 58% 42%;
+      background: var(--lime);
+      text-align: center;
+      transform: rotate(4deg);
+    }
+    .hero-sticker strong { display: block; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1; letter-spacing: -.07em; }
+    .hero-sticker span { display: block; max-width: 210px; margin-top: 12px; font-weight: 750; }
+    .spark { position: absolute; color: var(--accent); font-size: 2.2rem; font-weight: 900; }
+    .spark.one { top: -21px; right: 20px; }
+    .spark.two { bottom: 5px; left: 0; }
+    .ticker {
+      overflow: hidden;
+      border-block: 2px solid var(--ink);
+      background: var(--accent);
+      color: #fff;
+    }
+    .ticker p { margin: 0; padding: 11px 0; text-align: center; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+    section { padding-block: clamp(64px, 8vw, 104px); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+    .section-heading h2 { max-width: 650px; margin-bottom: 0; font-size: clamp(2.35rem, 5vw, 4.2rem); line-height: 1; letter-spacing: -.065em; }
+    .section-heading > p { max-width: 295px; margin-bottom: 3px; color: var(--muted); }
+    .team-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+    .member-card {
+      grid-column: span 2;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .member-card:nth-child(4) { grid-column: 2 / span 2; }
+    .portrait-wrap { position: relative; height: 245px; overflow: hidden; background: var(--lavender); border-bottom: 2px solid var(--ink); }
+    .member-card:nth-child(2) .portrait-wrap, .member-card:nth-child(5) .portrait-wrap { background: var(--lime); }
+    .portrait-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 36%; }
+    .number-tag {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      display: grid;
+      width: 40px;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--surface);
+      font-weight: 900;
+    }
+    .card-body { padding: 20px; }
+    .name-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+    .name-row h3 { margin: 0; font-size: 1.7rem; line-height: 1; letter-spacing: -.05em; }
+    .role { color: var(--muted); font-size: .72rem; font-weight: 850; text-align: right; text-transform: uppercase; }
+    .card-body > p { margin-bottom: 17px; color: var(--muted); font-size: .91rem; }
+    .detail { margin: 0 0 13px; padding-top: 12px; border-top: 1px dashed var(--line); }
+    .detail-label { display: block; margin-bottom: 3px; color: var(--accent-ink); font-size: .68rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .detail p { margin: 0; font-size: .88rem; }
+    .hot-take {
+      margin: 16px 0 0;
+      padding: 13px;
+      border-left: 4px solid var(--accent);
+      background: var(--surface-strong);
+      font-size: .9rem;
+      font-weight: 750;
+    }
+    .future {
+      position: relative;
+      overflow: hidden;
+      border-block: 2px solid var(--ink);
+      background: var(--surface-strong);
+    }
+    .future-intro { max-width: 740px; margin-bottom: 32px; color: var(--muted); font-size: 1.08rem; }
+    .future-intro strong { color: var(--ink); }
+    .future-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .future-card { min-height: 205px; padding: 22px; border: 2px solid var(--ink); border-radius: 14px; background: var(--surface); }
+    .future-card .icon { display: block; margin-bottom: 20px; font-size: 1.8rem; }
+    .future-card h3 { margin-bottom: 8px; font-size: 1.22rem; letter-spacing: -.035em; }
+    .future-card p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .manifesto {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      align-items: center;
+      gap: 35px;
+      padding: 30px;
+      border: 2px solid var(--ink);
+      border-radius: 18px;
+      background: var(--lime);
+      box-shadow: var(--shadow);
+    }
+    .manifesto h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.4rem); line-height: .98; letter-spacing: -.06em; }
+    .manifesto p { margin: 0; font-size: clamp(1rem, 1.7vw, 1.24rem); font-weight: 650; }
+    .manifesto em { color: var(--accent-ink); font-style: normal; font-weight: 900; }
+    footer { padding-block: 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: .83rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; }
+    footer p { margin: 0; }
+    @media (max-width: 900px) {
+      .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 19px; }
+      .member-card, .member-card:nth-child(4) { grid-column: auto; }
+      .member-card:last-child { grid-column: 1 / -1; }
+      .member-card:last-child .portrait-wrap { height: 300px; }
+      .hero { grid-template-columns: 1.2fr .8fr; gap: 24px; }
+    }
+    @media (max-width: 700px) {
+      .wrap { width: min(100% - 32px, 540px); }
+      .topbar { flex-wrap: wrap; padding-block: 15px; }
+      .nav { width: 100%; justify-content: space-between; order: 2; }
+      .nav a { font-size: .82rem; }
+      #theme-toggle { padding: 8px 10px; }
+      .hero { grid-template-columns: 1fr; padding-block: 60px 54px; }
+      .hero-sticker { justify-self: center; width: min(270px, 75%); min-height: 210px; }
+      .hero h1 { font-size: clamp(3.35rem, 16vw, 5.3rem); }
+      .ticker p { font-size: .75rem; }
+      section { padding-block: 62px; }
+      .section-heading { align-items: start; flex-direction: column; gap: 13px; }
+      .section-heading > p { max-width: 400px; }
+      .team-grid { grid-template-columns: 1fr; gap: 22px; }
+      .member-card, .member-card:nth-child(4), .member-card:last-child { grid-column: auto; }
+      .portrait-wrap, .member-card:last-child .portrait-wrap { height: 290px; }
+      .future-grid { grid-template-columns: 1fr; }
+      .future-card { min-height: 0; }
+      .manifesto { grid-template-columns: 1fr; gap: 18px; padding: 23px; }
+      .footer-inner { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap topbar">
+    <a class="brand" href="#top" aria-label="Merge Conflict team home"><span class="brand-mark">M</span><span>MERGE CONFLICT</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#team">The humans</a>
+      <a href="#future-of-se">The future</a>
+    </nav>
+    <button id="theme-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false"><span aria-hidden="true">☾</span><span>Night mode</span></button>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div>
+        <p class="eyebrow">Five brains · one shared repo · several snack opinions</p>
+        <h1>Meet the humans behind the <span class="highlight">merge.</span></h1>
+        <p class="hero-copy">We’re five first-semester Computer Science master’s students at Paderborn University. We like building things, asking better questions, and checking whether the “obvious fix” has quietly deleted production.</p>
+        <p class="hero-copy"><strong>Our team superpower:</strong> a healthy suspicion of confident answers—whether they come from a chatbot, a compiler, or someone saying “quick refactor.”</p>
+      </div>
+      <div class="hero-sticker" aria-label="Five teammates, zero trust in unreviewed code">
+        <span class="spark one" aria-hidden="true">✳</span>
+        <div><strong>5 → 1</strong><span>teamwork, shared tabs &amp; one suspiciously large group chat</span></div>
+        <span class="spark two" aria-hidden="true">✦</span>
+      </div>
+    </div>
+
+    <div class="ticker"><p>Now compiling: ideas · questions · a very thorough code review&nbsp; ✳ &nbsp;Now compiling: ideas · questions · a very thorough code review</p></div>
+
+    <section class="wrap" id="team" aria-labelledby="team-title">
+      <div class="section-heading">
+        <div><p class="section-kicker">Meet the committers</p><h2 id="team-title">Good at different things. United by the diff.</h2></div>
+        <p>Five people, five specialties, and enough hot takes to keep the pull request discussion lively.</p>
+      </div>
+      <div class="team-grid">
+        <article class="member-card">
+          <div class="portrait-wrap"><img src="{{image:gouthami-web.jpg}}" alt="Photo of Gouthami"><span class="number-tag">01</span></div>
+          <div class="card-body">
+            <div class="name-row"><h3>Gouthami</h3><span class="role">Data &amp; details</span></div>
+            <p>M.Sc. Computer Science · Paderborn University</p>
+            <div class="detail"><span class="detail-label">Into</span><p>Data visualisation, dancing and baking (the cakes are in beta).</p></div>
+            <div class="detail"><span class="detail-label">Fun fact</span><p>Supermarket labels taught her more German than German class. Brot: the original flashcard.</p></div>
+            <blockquote class="hot-take"><span class="detail-label">Hot take</span>If you can’t explain the code AI wrote, you didn’t build it—you copied a guess.</blockquote>
+          </div>
+        </article>
+
+        <article class="member-card">
+          <div class="portrait-wrap"><img src="{{image:chirag-web.jpg}}" alt="Photo of Chirag"><span class="number-tag">02</span></div>
+          <div class="card-body">
+            <div class="name-row"><h3>Chirag</h3><span class="role">ML &amp; match day</span></div>
+            <p>M.Sc. Computer Science · Paderborn University</p>
+            <div class="detail"><span class="detail-label">Into</span><p>Machine learning, cricket and locating Paderborn’s best Döner.</p></div>
+            <div class="detail"><span class="detail-label">Fun fact</span><p>His German Döner rating list is longer than his thesis-idea list. Priorities: well seasoned.</p></div>
+            <blockquote class="hot-take"><span class="detail-label">Hot take</span>“Prompt engineering” is just writing clear requirements—and we were always bad at that.</blockquote>
+          </div>
+        </article>
+
+        <article class="member-card">
+          <div class="portrait-wrap"><img src="{{image:krish-web.jpg}}" alt="Photo of Krish"><span class="number-tag">03</span></div>
+          <div class="card-body">
+            <div class="name-row"><h3>Krish</h3><span class="role">Web &amp; keys</span></div>
+            <p>M.Sc. Computer Science · Paderborn University</p>
+            <div class="detail"><span class="detail-label">Into</span><p>MERN-stack web development, chess and playing piano.</p></div>
+            <div class="detail"><span class="detail-label">Fun fact</span><p>About 2000 bullet-chess rating: making questionable moves at an elite speed.</p></div>
+            <blockquote class="hot-take"><span class="detail-label">Hot take</span>AI won’t take your job; a junior with three agents and no code review can break production.</blockquote>
+          </div>
+        </article>
+
+        <article class="member-card">
+          <div class="portrait-wrap"><img src="{{image:kushi-web.jpg}}" alt="Photo of Kushi"><span class="number-tag">04</span></div>
+          <div class="card-body">
+            <div class="name-row"><h3>Kushi</h3><span class="role">Design &amp; detours</span></div>
+            <p>M.Sc. Computer Science · Paderborn University</p>
+            <div class="detail"><span class="detail-label">Into</span><p>UI/UX design, drawing and Deutschlandticket-powered German adventures.</p></div>
+            <div class="detail"><span class="detail-label">Fun fact</span><p>Eight German cities visited; every Hauptbahnhof successfully turned into a side quest.</p></div>
+            <blockquote class="hot-take"><span class="detail-label">Hot take</span>AI makes every app look alike, so good design will be the most valuable skill in tech.</blockquote>
+          </div>
+        </article>
+
+        <article class="member-card">
+          <div class="portrait-wrap"><img src="{{image:om-web.jpg}}" alt="Photo of Om"><span class="number-tag">05</span></div>
+          <div class="card-body">
+            <div class="name-row"><h3>Om</h3><span class="role">Security &amp; sound</span></div>
+            <p>M.Sc. Computer Science · Paderborn University</p>
+            <div class="detail"><span class="detail-label">Into</span><p>Cybersecurity, football and mechanical keyboards.</p></div>
+            <div class="detail"><span class="detail-label">Fun fact</span><p>More mechanical keyboards than shoes. Every outfit deserves a different switch.</p></div>
+            <blockquote class="hot-take"><span class="detail-label">Hot take</span>The first big AI-agent hack hasn’t happened yet. It’ll start with a README file.</blockquote>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="future" id="future-of-se" aria-labelledby="future-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><p class="section-kicker">Our shared forecast</p><h2 id="future-title">The future writes faster. We’ll have to think better.</h2></div>
+        </div>
+        <p class="future-intro">Across our profiles, we see AI as a <strong>power tool, not an autopilot</strong>. It already helps with prototypes, small scripts, tests, unfamiliar libraries and error messages. It also guesses, forgets context, repeats bland design patterns and can make unsafe code at impressive speed. So our shared job gets more human: understand the problem, then verify the answer.</p>
+        <div class="future-grid">
+          <article class="future-card"><span class="icon" aria-hidden="true">🧭</span><h3>From syntax to steering</h3><p>More people will describe goals and coordinate AI agents; planning, requirements and system design will matter more than typing every line.</p></article>
+          <article class="future-card"><span class="icon" aria-hidden="true">🔍</span><h3>Review becomes the real craft</h3><p>Testing, checking data, debugging and security review will grow in importance. An AI-written answer is a draft—even when delivered with confidence.</p></article>
+          <article class="future-card"><span class="icon" aria-hidden="true">🎨</span><h3>Humans keep the taste</h3><p>When software gets cheap to make, useful ideas, thoughtful UX, accessibility and code people can explain are what make it worth using.</p></article>
+        </div>
+        <div class="manifesto" style="margin-top: 30px">
+          <h2>Our team rule for the robot era:</h2>
+          <p>Let AI do the first draft. Let humans own the decision. <em>Never merge code nobody can explain.</em> Also, don’t put secrets in the README. Om has read the README.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner"><p>Built by an agent, supervised by humans.</p><p>Made with curiosity, cautious optimism &amp; zero external dependencies. · Paderborn, DE</p></div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('upb-theme');
+    if (savedTheme === 'night' || savedTheme === 'day') root.setAttribute('data-theme', savedTheme);
+    function updateToggle() {
+      const night = root.getAttribute('data-theme') === 'night';
+      toggle.setAttribute('aria-pressed', String(night));
+      toggle.setAttribute('aria-label', night ? 'Switch to day mode' : 'Switch to night mode');
+      toggle.innerHTML = night ? '<span aria-hidden="true">☀</span><span>Day mode</span>' : '<span aria-hidden="true">☾</span><span>Night mode</span>';
+    }
+    updateToggle();
+    toggle.addEventListener('click', () => {
+      const nextTheme = root.getAttribute('data-theme') === 'night' ? 'day' : 'night';
+      root.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('upb-theme', nextTheme);
+      updateToggle();
+    });
+  </script>
+</body>
+</html>
