@@ -1,0 +1,29 @@
+[project]
+name = "agentic-se-lab1"
+version = "1.0.0"
+description = "Lab 1 – Agentic Software Engineering, Paderborn University"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=1.40",
+    "python-dotenv>=1.0",
+    "numpy>=1.26",
+    "rank-bm25>=0.2.2",
+    "jsonschema>=4.21",
+    "pydantic>=2.6",
+    "pytest>=8.0",
+    "tiktoken>=0.7",
+]
+
+[project.optional-dependencies]
+# Local embedding / cross-encoder models. Large download (PyTorch), only needed
+# if you don't want to use the gateway embedding model or if you choose
+# cross-encoder re-ranking in Task 3.
+local = [
+    "sentence-transformers>=3.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["task4_tools/tests"]

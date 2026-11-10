@@ -1,0 +1,10 @@
+openai>=1.40
+python-dotenv>=1.0
+numpy>=1.26
+rank-bm25>=0.2.2
+jsonschema>=4.21
+pydantic>=2.6
+pytest>=8.0
+tiktoken>=0.7
+# optional, large download: local embedding / cross-encoder models
+# sentence-transformers>=3.0

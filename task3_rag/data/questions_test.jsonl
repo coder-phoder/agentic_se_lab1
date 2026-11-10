@@ -1,0 +1,100 @@
+{"id": "test001", "question": "What does the `--include-internal` flag of `pq topic purge` do?"}
+{"id": "test002", "question": "What should I do when PaderQueue logs PQ-E2187?"}
+{"id": "test003", "question": "What does the `--since` flag of `pq snapshot purge` do?"}
+{"id": "test004", "question": "Which error code does PaderQueue report when the component that decides which consumer reads which partition ran out of memory space for buffering?"}
+{"id": "test005", "question": "In which release did the default of `partitioner.queue_capacity` change, and what was it before?"}
+{"id": "test006", "question": "Which permanent fix does the documentation recommend for the error that caused incident INC-2024-138?"}
+{"id": "test007", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E3642?"}
+{"id": "test008", "question": "What was the default value of `auth.max_retries` in PaderQueue 3.x?"}
+{"id": "test009", "question": "How do I fix error PQ-E2760?"}
+{"id": "test010", "question": "Which permanent fix does the documentation recommend for the error that caused incident INC-2025-168?"}
+{"id": "test011", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E4934?"}
+{"id": "test012", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E1547?"}
+{"id": "test013", "question": "What is the default value of `acktracker.compression`?"}
+{"id": "test014", "question": "Which permanent fix does the documentation recommend for the error that caused incident INC-2025-131?"}
+{"id": "test015", "question": "Which permanent fix does the documentation recommend for the error that caused incident INC-2024-104?"}
+{"id": "test016", "question": "Our logs say that a request failed because the background job that cleans up and merges old storage files is switched off. What is the name of this error?"}
+{"id": "test017", "question": "Our logs say that the web endpoint through which clients can publish over HTTP has too many waiting jobs and refuses more. What is the name of this error?"}
+{"id": "test018", "question": "Which permanent fix does the documentation recommend for the error that caused incident INC-2025-182?"}
+{"id": "test019", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E4371?"}
+{"id": "test020", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E2451?"}
+{"id": "test021", "question": "What is the default value of `partitioner.timeout_ms`?"}
+{"id": "test022", "question": "What was the default value of `snapshotter.max_connections` in PaderQueue 2.x?"}
+{"id": "test023", "question": "How do I fix error PQ-E2545?"}
+{"id": "test024", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E3321?"}
+{"id": "test025", "question": "What should I do when PaderQueue logs PQ-E2451?"}
+{"id": "test026", "question": "What is the default value of `scheduler.worker_threads`?"}
+{"id": "test027", "question": "Our logs say that the component that keeps copies of the data on other machines has too many waiting jobs and refuses more. What is the name of this error?"}
+{"id": "test028", "question": "Which setting determines how much memory the logic that distributes messages across shards reserves for buffering?"}
+{"id": "test029", "question": "In which release did the default of `spool.max_retries` change, and what was it before?"}
+{"id": "test030", "question": "In which release did the default of `broker.timeout_ms` change, and what was it before?"}
+{"id": "test031", "question": "In which release did the default of `ingress.interval_s` change, and what was it before?"}
+{"id": "test032", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E3239?"}
+{"id": "test033", "question": "What is the recommended fix for PQ-E3859?"}
+{"id": "test034", "question": "How do I fix error PQ-E3319?"}
+{"id": "test035", "question": "What is the recommended fix for PQ-E1441?"}
+{"id": "test036", "question": "What is the default value of `broker.max_connections`?"}
+{"id": "test037", "question": "What is the default value of `replicator.max_retries`?"}
+{"id": "test038", "question": "How do I fix error PQ-E4425?"}
+{"id": "test039", "question": "Which setting determines how much memory the part that holds back messages until a later point in time reserves for buffering?"}
+{"id": "test040", "question": "Our logs say that the bookkeeping of which messages were confirmed by readers waited too long for an answer. What is the name of this error?"}
+{"id": "test041", "question": "Which error code does PaderQueue report when the central process that receives and forwards all messages deliberately slowed requests down?"}
+{"id": "test042", "question": "What is the default value of `auth.compression`?"}
+{"id": "test043", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E1944?"}
+{"id": "test044", "question": "What is the default value of `spool.worker_threads`?"}
+{"id": "test045", "question": "Which error code does PaderQueue report when the component that keeps copies of the data on other machines waited too long for an answer?"}
+{"id": "test046", "question": "What was the default value of `partitioner.compression` in PaderQueue 3.x?"}
+{"id": "test047", "question": "In which release did the default of `compactor.worker_threads` change, and what was it before?"}
+{"id": "test048", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E4712?"}
+{"id": "test049", "question": "How do I fix error PQ-E3391?"}
+{"id": "test050", "question": "Which setting makes the logs of the web endpoint through which clients can publish over HTTP more or less chatty?"}
+{"id": "test051", "question": "What is the default value of `partitioner.max_connections`?"}
+{"id": "test052", "question": "What should I do when PaderQueue logs PQ-E3642?"}
+{"id": "test053", "question": "What was the default value of `retention.batch_size` in PaderQueue 3.x?"}
+{"id": "test054", "question": "What is the default value of `partitioner.queue_capacity` in the current version of PaderQueue?"}
+{"id": "test055", "question": "Our logs say that the disk-based staging area for messages that have not been persisted yet on two machines cannot read each other's data because they pack it differently. What is the name of this error?"}
+{"id": "test056", "question": "What was the default value of `retention.threshold_percent` in PaderQueue 2.x?"}
+{"id": "test057", "question": "How do I fix error PQ-E4048?"}
+{"id": "test058", "question": "What does the `--force` flag of `pq snapshot restore` do?"}
+{"id": "test059", "question": "Which setting caps the number of jobs that can wait inside the component that decides which consumer reads which partition?"}
+{"id": "test060", "question": "In PaderQueue 4.x, what does `dlq.batch_size` default to?"}
+{"id": "test061", "question": "Which permanent fix does the documentation recommend for the error that caused incident INC-2025-220?"}
+{"id": "test062", "question": "Which error code does PaderQueue report when a request failed because the component that decides which consumer reads which partition is switched off?"}
+{"id": "test063", "question": "Which setting decides at what fill level the part that throws away expired messages begins to slow things down?"}
+{"id": "test064", "question": "What does the `--include-internal` flag of `pq snapshot purge` do?"}
+{"id": "test065", "question": "In which release did the default of `retention.threshold_percent` change, and what was it before?"}
+{"id": "test066", "question": "What does the `--max-parallel` flag of `pq snapshot list` do?"}
+{"id": "test067", "question": "What is the default value of `metrics.queue_capacity`?"}
+{"id": "test068", "question": "What was the default value of `retention.log_level` in PaderQueue 3.x?"}
+{"id": "test069", "question": "What does the `--retain-days` flag of `pq topic restore` do?"}
+{"id": "test070", "question": "Which permanent fix does the documentation recommend for the error that caused incident INC-2025-173?"}
+{"id": "test071", "question": "In which release did the default of `coordinator.queue_capacity` change, and what was it before?"}
+{"id": "test072", "question": "In which release did the default of `spool.compression` change, and what was it before?"}
+{"id": "test073", "question": "Which setting controls how many times the logic that distributes messages across shards tries again before it gives up?"}
+{"id": "test074", "question": "Which setting picks the algorithm the component that decides which consumer reads which partition uses to shrink data?"}
+{"id": "test075", "question": "What should I do when PaderQueue logs PQ-E4590?"}
+{"id": "test076", "question": "In PaderQueue 4.x, what does `compactor.compression` default to?"}
+{"id": "test077", "question": "How do I migrate from Apache Kafka to PaderQueue?"}
+{"id": "test078", "question": "Which error code does PaderQueue report when the component that decides which consumer reads which partition deliberately slowed requests down?"}
+{"id": "test079", "question": "What is the default value of `spool.log_level` in the current version of PaderQueue?"}
+{"id": "test080", "question": "What was the default value of `snapshotter.batch_size` in PaderQueue 3.x?"}
+{"id": "test081", "question": "In which release did the default of `retention.log_level` change, and what was it before?"}
+{"id": "test082", "question": "In which release did the default of `acktracker.batch_size` change, and what was it before?"}
+{"id": "test083", "question": "Which setting limits how many clients can talk to the mechanism that parks messages nobody could process in parallel?"}
+{"id": "test084", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E3441?"}
+{"id": "test085", "question": "What is the default value of `retention.compression`?"}
+{"id": "test086", "question": "What is the recommended fix for PQ-E4371?"}
+{"id": "test087", "question": "What does the `--max-parallel` flag of `pq tenant describe` do?"}
+{"id": "test088", "question": "What is the default value of `spool.max_connections` in the current version of PaderQueue?"}
+{"id": "test089", "question": "What is the default value of `metrics.worker_threads`?"}
+{"id": "test090", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E1736?"}
+{"id": "test091", "question": "What was the default value of `coordinator.batch_size` in PaderQueue 3.x?"}
+{"id": "test092", "question": "How do I fix error PQ-E2508?"}
+{"id": "test093", "question": "What is the current default value of the setting that the error catalogue recommends changing for PQ-E2771?"}
+{"id": "test094", "question": "What is the default value of `auth.log_level` in the current version of PaderQueue?"}
+{"id": "test095", "question": "In which release did the default of `compactor.log_level` change, and what was it before?"}
+{"id": "test096", "question": "Which permanent fix does the documentation recommend for the error that caused incident INC-2024-103?"}
+{"id": "test097", "question": "In which release did the default of `retention.worker_threads` change, and what was it before?"}
+{"id": "test098", "question": "Which setting determines how much memory the web endpoint through which clients can publish over HTTP reserves for buffering?"}
+{"id": "test099", "question": "How do I fix error PQ-E2628?"}
+{"id": "test100", "question": "Which setting controls the pause between two background cycles of the component that stops a single customer from using too much capacity?"}
