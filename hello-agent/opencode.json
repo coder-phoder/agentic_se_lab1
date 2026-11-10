@@ -1,0 +1,35 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "upb": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "UPB AI Gateway",
+      "options": {
+        "baseURL": "https://ai-gateway.uni-paderborn.de/v1",
+        "apiKey": "{env:UPB_AI_GATEWAY_KEY}"
+      },
+      "models": {
+        "openai.gpt-6-luna": {
+          "name": "GPT-6 Luna (default)",
+          "tool_call": true,
+          "reasoning": true,
+          "temperature": false,
+          "cost": { "input": 0.10, "output": 0.50, "cache_read": 0.01 },
+          "limit": { "context": 922000, "output": 128000 }
+        },
+        "kiconnect.qwen3.8-27b": {
+          "name": "Qwen 3.8 27B (free fallback)",
+          "tool_call": true,
+          "temperature": true,
+          "cost": { "input": 0, "output": 0 },
+          "limit": { "context": 262000, "output": 32000 }
+        }
+      }
+    }
+  },
+  "model": "upb/openai.gpt-6-luna",
+  "permission": {
+    "edit": "ask",
+    "bash": "ask"
+  }
+}
